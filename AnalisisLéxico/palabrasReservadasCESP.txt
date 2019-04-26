@@ -1,0 +1,16 @@
+break - romper
+case - caso
+char - caracter
+double - doble
+else - sino
+float - flotante
+for - para
+if - si
+int - entero
+return - retorna
+struct - estructura
+void - vacio
+while - mientras
+default - defecto
+break - romper
+switch - cambiar
