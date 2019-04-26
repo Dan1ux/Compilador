@@ -16,13 +16,6 @@
 ****      Sección de Expresiones Regulares     *****
 ****************************************************/
 
-numero [0-9]
-caracter [a-zA-Z]
-letra_ {caracter}|("_")
-espacio [ \t\n]
-esps {espacio}+
-cadena {caracter}{caracter}+
-id {letra_}({letra_}|{numero})+
 
 programa {declaraciones}{funciones}
 declaraciones {tipo}{lista}(";")|("")
@@ -44,12 +37,24 @@ lista_param {lista_param}(","){expresion}|{expresion}
 condicion {condicion}("o"){condicion}|{condicion}("y"){condicion}|("negar"){condicion}|("("){condicion}(")")|{expresion}{relacional}{expresion}|("cierto")|("falso")
 relacional ("<")|(">")|(">=")|("<=")|("!=")|("==")
 
+digito [0-9]
+numero {digito}+
+letra [a-zA-Z]
+caracter [a-zA-Z@]
+letra_ {letra}|("_")
+espacio {[ \t\n]}*
+cadena {caracter}+
+id {letra_}({letra_}|{numero})+
+comentario (\¡\*~(\*\¿)*\*\¿)
 
 %%
+	
+{digito} { 
+	      printf ("<DIGITO,%s> \n",yytext);
+	     }
 
-  {numero} {
-            printf( "Una palabra clave: %s\n", yytext );
-            }
+
+[ \n\t]+ {}        
 
 %%
 
