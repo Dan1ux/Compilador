@@ -14,12 +14,15 @@
 
 /***************************************************
 ****      Sección de Expresiones Regulares     *****
-****************************************************/
+****************************************************
+Const
+*/
 
 
-palabraReservada entero|flotante|doble|caracter|vacio|estructura|si|sino|caso|para|mientras|retorna|defecto|romper|cambiar
+palabraReservada entero|flotante|doble|caracter|vacio|estructura|si|sino|caso|para|mientras|retorna|defecto|romper|cambiar|imprimir|verdadero|falso
 digito [0-9]
-numero {digito}+
+entero {digito}+
+flotante {entero}("."{entero})?((e|E)[+-]?{entero})?
 letra [a-zA-Z]
 caracter [a-zA-Z@]
 letra_ {letra}|("_")
@@ -34,9 +37,14 @@ comentario (\¡\*^(\*\¿)*\*\¿\n)
 	printf ("<PALABRA RESERVADA,%s>\n",yytext);
 }
 
-{digito} { 
-	printf ("<DIGITO,%s>\n",yytext);
+{entero} { 
+	printf ("<ENTERO,%s>\n",yytext);
 }
+
+{flotante} { 
+	printf ("<FLOTANTE,%s>\n",yytext);
+}
+
 
 comentario { printf ("<comen,%s>\n",yytext);}
 
