@@ -1,0 +1,9 @@
+or - ^
+and - ~
+mul - *
+div - /
+mod - %
+sum - +
+res - -
+igual - =
+comp - ==
