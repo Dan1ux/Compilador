@@ -1,0 +1,21 @@
+ESTADOS
+
+Las expresiones pueden ser prefijadas mediante estados. Se denotan mediante un identificador entre ángulos y se declaran en la parte de las definiciones. Las declaraciones se hacen mediante %s para los estados "inclusivos" o bien %x para los estados "exclusivos, seguidos de los nombres de los estados. No pueden haber caracteres en blanco antes de la declaración. Un estado se activa mediante la acción BEGIN estado. A partir de ese momento, las reglas que estén prefijadas con el estado pasan a estar activas. En el caso de que el estado sea inclusivo, las reglas no prefijadas también permanecen activas. Los estados exclusivos son especialmente útiles para especificar "sub analizadores" que analizan porciones de la entrada cuya estructura "sintáctica" es difeerente de la del resto de la entrada.
+
+Los estados se traducen por enteros, pudiendo ser manipulados como tales.
+La macro INITIAL puede utilizarse para referirse al estado 0. Las macros YY_START y YYSTATE contienen el valor del estado actual
+
+En flex es posible asociar un ámbito con los estados o condiciones iniciales.
+Basta con colocar entre llaves las parejas patrón acción gobernadas por ese estado.
+
+LA PILA DE ESTADOS
+
+Mediante el uso de la opción
+  %option stack
+tendremos acceso a una pila de estados y a tres rutinas para manipularla:
+  - void yy_push_state(int new_state)
+    Empuja el estado actual y bifurca a new_state.
+  - void yy_pop_state()
+    Saca el estado en el top de la pila y bifurca a el mismo.
+  - int yy_top_state()
+    Nos devuelve el estado en el top de la pila, sin alterar los contenidos de la misma
